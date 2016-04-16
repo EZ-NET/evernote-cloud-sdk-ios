@@ -3,6 +3,7 @@ FMK_NAME=ENSDK
 FMK_VERSION=A
 SRCROOT="$(pwd)/../"
 RESOURCE_NAME=ENSDKResources.bundle
+MODULEMAP_NAME=module.modulemap
 
 # Install dir will be the final output to the framework.
 # The following line create it in the root folder of the current project.
@@ -32,6 +33,7 @@ mkdir -p "${INSTALL_DIR}/Versions/${FMK_VERSION}"
 mkdir -p "${INSTALL_DIR}/Versions/${FMK_VERSION}/Resources"
 mkdir -p "${INSTALL_DIR}/Versions/${FMK_VERSION}/Headers"
 mkdir -p "${INSTALL_DIR}/Versions/${FMK_VERSION}/Headers/Advanced"
+mkdir -p "${INSTALL_DIR}/Modules"
 
 # Creates the internal links.
 # It MUST uses relative path, otherwise will not work when the folder is copied/moved.
@@ -55,6 +57,9 @@ rm -r "${WRK_DIR}"
 
 # Copy resource to Products folder
 cp -R "${SRCROOT}/${RESOURCE_NAME}" ${INSTALL_DIR}/../
+
+# Copy modulemap to Modules folder
+cp "${MODULEMAP_NAME}" "${INSTALL_DIR}/Modules"
 
 echo "Framework built successfully! Please find in ${INSTALL_DIR}"
 exit 0
